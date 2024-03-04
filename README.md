@@ -17,4 +17,4 @@
 
 
 ## Схема базы данных
-![Schema](images/schema.png)
+![Schema](schema.png)
