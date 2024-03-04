@@ -1,0 +1,23 @@
+-- Session #1
+
+-- postgres=# Begin;
+-- BEGIN
+-- postgres=*# UPDATE pizzeria
+-- SET rating = 5 WHERE name = 'Pizza Hut';
+-- UPDATE 1
+-- postgres=*# COMMIT;
+-- COMMIT
+-- postgres=#
+
+-- Session #2
+-- postgres=# select * from pizzeria where name  = 'Pizza Hut';
+--  id |   name    | rating
+-- ----+-----------+--------
+--   1 | Pizza Hut |    4.6
+-- (1 row)
+--
+-- postgres=# select * from pizzeria where name  = 'Pizza Hut';
+--  id |   name    | rating
+-- ----+-----------+--------
+--   1 | Pizza Hut |      5
+-- (1 row)

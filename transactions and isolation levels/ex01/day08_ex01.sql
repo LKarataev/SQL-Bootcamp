@@ -1,0 +1,57 @@
+-- Session #1
+--
+-- postgres=# SHOW TRANSACTION ISOLATION LEVEL;
+--  transaction_isolation
+-- -----------------------
+--  read committed
+-- (1 row)
+--
+-- postgres=# BEGIN;
+-- BEGIN
+-- postgres=*# SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
+--  id |   name    | rating
+-- ----+-----------+--------
+--   1 | Pizza Hut |      5
+-- (1 row)
+--
+-- postgres=*# UPDATE pizzeria
+-- SET rating = 4 WHERE name = 'Pizza Hut';
+-- UPDATE 1
+-- postgres=*# COMMIT;
+-- COMMIT
+-- postgres=# SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
+--  id |   name    | rating
+-- ----+-----------+--------
+--   1 | Pizza Hut |    3.6
+-- (1 row)
+--
+-- postgres=#
+-- -------------------------------------------------------------
+-- Session #2
+--
+-- postgres=# SHOW TRANSACTION ISOLATION LEVEL;
+--  transaction_isolation
+-- -----------------------
+--  read committed
+-- (1 row)
+--
+-- postgres=# BEGIN;
+-- BEGIN
+-- postgres=*# SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
+--  id |   name    | rating
+-- ----+-----------+--------
+--   1 | Pizza Hut |      5
+-- (1 row)
+--
+-- postgres=*# UPDATE pizzeria
+-- SET rating = 3.6 WHERE name = 'Pizza Hut';
+-- UPDATE 1
+-- postgres=*# COMMIT;
+-- COMMIT
+-- postgres=# SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
+--  id |   name    | rating
+-- ----+-----------+--------
+--   1 | Pizza Hut |    3.6
+-- (1 row)
+--
+-- postgres=#
